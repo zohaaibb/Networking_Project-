@@ -71,14 +71,14 @@ Routing
 
 Router(config)# ip route 192.168.20.0 255.255.255.0 10.0.0.2
 
-esting
+Testing
 Verified inter-VLAN communication using ping
 
 Simulated failover by shutting down primary router interface (HSRP tested)
 
 Verified correct routing using traceroute and show ip route
 
-💡 Learning Outcomes
+Learning Outcomes
 Gained hands-on experience with enterprise-level networking concepts
 
 Understood how HSRP provides redundancy for high availability
