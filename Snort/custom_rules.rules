@@ -1,1 +1,27 @@
-Snort/custom_rules.rules
+#Snort/custom_rules.rules
+# SSH CONNECTION ATTEMPTS AND BRUTE FORCE
+
+alert tcp any any -> any 22 (msg:"SSH Connection Attempt Detected"; flags:S; sid:1000011; rev:1;)
+
+alert tcp any any -> any 22 (msg:"SSH Brute Force Attempt - Multiple Connections"; flow:to_server,established; threshold:type threshold, track by_src, count 5, seconds 60; sid:1000012; re>
+
+alert tcp any any -> any 22 (msg:"Possible SSH Version Scan Detected"; content:"SSH-"; sid:1000013; rev:1;)
+
+alert tcp any any -> any 22 (msg:"SSH Password Guessing Detected"; content:"Password:"; sid:1000014; rev:1;)
+
+alert tcp any any -> any 22 (msg:"SSH Exploit Attempt - Suspicious Payload"; content:"root"; content:"PermitRootLogin"; distance:0; within:100; sid:1000015; rev:1;)
+
+# OTHER HIGH-PRIORITY RULES
+
+alert tcp any any -> any 3389 (msg:"RDP Connection Attempt Detected"; flags:S; sid:1000016; rev:1;)
+
+alert tcp any any -> any 1433 (msg:"MSSQL Brute Force Attempt"; flow:to_server,established; content:"sa"; sid:1000017; rev:1;)
+
+alert tcp any any -> any 5900 (msg:"VNC Session Attempt Detected"; sid:1000018; rev:1;)
+
+alert udp any any -> any 161 (msg:"SNMP Public Access Attempt"; content:"public"; sid:1000019; rev:1;)
+
+alert ip any any -> any any (msg:"Potential Data Exfiltration Detected - Large Packet Size"; dsize:>1500; sid:1000020; rev:1;)
+
+
+
